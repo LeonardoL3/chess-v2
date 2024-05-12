@@ -2,11 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .white {
-  @apply bg-white text-black
+  @apply bg-white text-black;
 }
 
 .black {
-  @apply bg-black text-white
+  @apply bg-black text-white;
 }
