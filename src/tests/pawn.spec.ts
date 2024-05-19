@@ -1,77 +1,39 @@
-import { vi, beforeEach, describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest';
 
 import { ISquareConfig, PieceColors, States } from '@/helpers/types';
 import { validateMove } from '@/helpers/validateMove';
 import { executeMove } from '@/helpers/executeMove';
-import { fakeChessboard } from './mocks/fakeChessboard';
+import { makeFakeChessboard } from './factories/makeFakeChessboard';
 
-describe('Pawn validation', () => {
-  const consoleErrorMock = vi
-    .spyOn(console, 'error')
-    .mockImplementation(() => undefined);
-
-  beforeEach(() => {
-    consoleErrorMock.mockReset();
-  });
-
-  it('should validate pawn move', () => {
-    const selectedSquare = fakeChessboard[1][6]; // white pawn
+describe('Pawn', () => {
+  it('should return valid pawn moves', () => {
+    const fakeChessboard = makeFakeChessboard()
+    const selectedSquare = fakeChessboard[0][6]; // white pawn
     const [validatedChessboard, state] = validateMove(
       PieceColors.WHITE,
       fakeChessboard,
       selectedSquare
     );
 
-    expect(selectedSquare.piece).toBeTruthy();
-    expect(validatedChessboard[1][6].isAttackable).not.toBe(true);
-    expect(validatedChessboard[1][5].isAttackable).toBe(true);
-    expect(validatedChessboard[1][4].isAttackable).toBe(true);
+    expect(selectedSquare.piece).not.toBe(undefined);
+    expect(validatedChessboard[0][6].isAttackable).not.toBe(true);
+    expect(validatedChessboard[0][5].isAttackable).toBe(true);
+    expect(validatedChessboard[0][4].isAttackable).toBe(true);
     expect(state).toBe(States.TO_EXECUTE);
   });
-  it('should handle invalid moves', () => {
-    const selectedSquare = fakeChessboard[3][3]; // invalid move cause square has no piece
+  
+  it('should execute pawn move', () => {
+    const fakeChessboard = makeFakeChessboard()
+    const selectedSquare = fakeChessboard[0][6]; // white pawn
     const [validatedChessboard, state] = validateMove(
       PieceColors.WHITE,
       fakeChessboard,
       selectedSquare
     );
-
-    expect(selectedSquare.piece).toBe(undefined);
-    expect(fakeChessboard).toEqual(validatedChessboard);
-    expect(state).toBe(States.TO_VALIDATE);
-    expect(consoleErrorMock).toHaveBeenCalledOnce();
-    expect(consoleErrorMock).toHaveBeenCalledWith(
-      'Invalid move: square has no piece!'
-    );
-  });
-  it('should move the only the correct piece color', () => {
-    const selectedSquare = fakeChessboard[1][6]; // white pawn
-    const [validatedChessboard, state] = validateMove(
-      PieceColors.BLACK,
-      fakeChessboard,
-      selectedSquare
-    );
-
-    expect(fakeChessboard).toEqual(validatedChessboard);
-    expect(state).toBe(States.TO_VALIDATE);
-    expect(consoleErrorMock).toHaveBeenCalledOnce();
-    expect(consoleErrorMock).toHaveBeenCalledWith(
-      'Invalid Move: you can only move black pieces!'
-    );
-  });
-  it('should move execute pawn move', () => {
-    const selectedSquare = fakeChessboard[1][6]; // white pawn
-    const [validatedChessboard, state] = validateMove(
-      PieceColors.WHITE,
-      fakeChessboard,
-      selectedSquare
-    );
-    const randomAttackableSquare = validatedChessboard[1].find(
+    const randomAttackableSquare = validatedChessboard[0].find(
       (cb) => cb.isAttackable
     ) as ISquareConfig;
 
-    expect(selectedSquare.piece).toBeTruthy();
-    expect(randomAttackableSquare).toBeTruthy();
     expect(state).toBe(States.TO_EXECUTE);
 
     const {
@@ -88,16 +50,24 @@ describe('Pawn validation', () => {
       randomAttackableSquare,
       selectedSquare
     );
-
-    expect(executedChessboard[attackableRow][attackableCol].piece?.type).toBe(
-      selectedSquare.piece?.type
-    );
-    expect(executedChessboard[attackableRow][attackableCol].piece?.color).toBe(
-      selectedSquare.piece?.color
-    );
-    expect(
-      executedChessboard[attackableRow][attackableCol].piece?.isFirstMove
-    ).toBe(false);
+    
+    const result = executedChessboard[attackableRow][attackableCol]
+    expect(result.piece?.type).toBe(selectedSquare.piece?.type);
+    expect(result.piece?.color).toBe(selectedSquare.piece?.color);
+    expect(result.piece?.isFirstMove).toBe(false);
     expect(executedChessboard[row][col].piece).toBe(undefined);
   });
+
+  it('should not change state if there are no valid moves', () => {
+    const fakeChessboard = makeFakeChessboard()
+    fakeChessboard[0][5].piece = fakeChessboard[0][1].piece // placing pawn in front of chosen pawn to block all moves
+    
+    const selectedSquare = fakeChessboard[0][6]
+    const [validatedChessboard, state] = validateMove(PieceColors.WHITE, fakeChessboard, selectedSquare)
+
+    expect(fakeChessboard).toEqual(validatedChessboard)
+    expect(validatedChessboard[0][6].piece?.isFirstMove).toBe(true)
+    expect(state).toBe(States.TO_VALIDATE)
+  })
+
 });

@@ -1,12 +1,7 @@
-import {
-  ISquareConfig,
-  PieceColors,
-  PieceTypes,
-  SquareColors,
-} from '@/helpers/types';
+import { PieceColors, PieceTypes, SquareColors } from "@/helpers/types";
 
-export const fakeChessboard: ISquareConfig[][] = [
-  [
+export function makeFakeChessboard(){
+    return [[
     {
       position: {
         row: 0,
@@ -887,3 +882,4 @@ export const fakeChessboard: ISquareConfig[][] = [
     },
   ],
 ];
+}

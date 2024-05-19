@@ -54,8 +54,8 @@ export function ChessBoard() {
                   className={`flex h-20 w-20 items-center justify-center ${color} border border-solid border-black`}
                   onClick={() => startRound(square)}
                 >
-                  <span className='text-center'>{square.piece?.type}</span>
-                  {/* <span className="text-center">Row: {square.position.row} Col: {square.position.col} {square.piece?.type}</span> */}
+                  {/* <span className='text-center'>{square.piece?.type}</span> */}
+                  <span className="text-center">Row: {square.position.row} Col: {square.position.col} {square.piece?.type}</span>
                 </button>
               );
             })}

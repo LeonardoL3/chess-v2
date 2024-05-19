@@ -7,4 +7,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  test: {
+    coverage: {
+        provider: 'v8',
+        reporter: ['text', 'json', 'html'],
+        reportsDirectory: './src/tests/coverage'
+    }
+  }
 });
