@@ -58,8 +58,8 @@ export function ChessBoard() {
                   className={`${color} flex h-20 w-20 cursor-pointer items-center justify-center border border-solid border-black`}
                   onClick={() => startRound(square)}
                 >
-                  <span className='text-center'>{square.piece?.type}</span>
-                  {/* <span className="text-center">Row: {square.position.row} Col: {square.position.col} {square.piece?.type}</span> */}
+                  {/* <span className='text-center'>{square.piece?.type}</span> */}
+                  <span className="text-center">Row: {square.position.row} Col: {square.position.col} {square.positionOnChessNotation}</span>
                 </button>
               );
             })}
