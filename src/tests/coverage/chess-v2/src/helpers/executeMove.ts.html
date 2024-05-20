@@ -106,13 +106,13 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { cloneDeep } from 'lodash';
-import { IPiece, ISquareConfig, PieceTypes } from './types';
+import { IPiece, ISquareContext, PieceTypes } from './types';
 &nbsp;
 export function executeMove(
-  chessboard: ISquareConfig[][],
-  selectedSquare: ISquareConfig,
-  previousSelectedSquare: ISquareConfig
-): ISquareConfig[][] {
+  chessboard: ISquareContext[][],
+  selectedSquare: ISquareContext,
+  previousSelectedSquare: ISquareContext
+): ISquareContext[][] {
   const { row, col } = selectedSquare.position;
   const { row: currentRow, col: currentCol } = previousSelectedSquare.position;
 &nbsp;

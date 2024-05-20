@@ -1,4 +1,4 @@
-import { PieceColors, PieceTypes, SquareColors } from "@/helpers/types";
+import { Colors, PieceTypes, SquareColors } from "@/helpers/types";
 
 export function makeFakeChessboard(){
     return [[
@@ -14,7 +14,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.ROOK,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -30,7 +30,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -90,7 +90,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -106,7 +106,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.ROOK,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -124,7 +124,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.BISHOP,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -140,7 +140,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -200,7 +200,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -216,7 +216,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.BISHOP,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -234,7 +234,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.KNIGHT,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -250,7 +250,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -310,7 +310,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -326,7 +326,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.KNIGHT,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -344,7 +344,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.QUEEN,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -360,7 +360,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -420,7 +420,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -436,7 +436,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.QUEEN,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -454,7 +454,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.KING,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -470,7 +470,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -530,7 +530,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -546,7 +546,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.KING,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -564,7 +564,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.KNIGHT,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -580,7 +580,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -640,7 +640,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -656,7 +656,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.KNIGHT,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -674,7 +674,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.BISHOP,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -690,7 +690,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -750,7 +750,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -766,7 +766,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.BISHOP,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -784,7 +784,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.ROOK,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -800,7 +800,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.BLACK,
+        color: Colors.BLACK,
         isFirstMove: true,
       },
     },
@@ -860,7 +860,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.PAWN,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },
@@ -876,7 +876,7 @@ export function makeFakeChessboard(){
       isOccupied: false,
       piece: {
         type: PieceTypes.ROOK,
-        color: PieceColors.WHITE,
+        color: Colors.WHITE,
         isFirstMove: true,
       },
     },

@@ -1,5 +1,5 @@
 import { executeMove } from '@/helpers/executeMove';
-import { PieceColors, PieceTypes, States } from '@/helpers/types';
+import { Colors, PieceTypes, States } from '@/helpers/types';
 import { validateMove } from '@/helpers/validateMove';
 import { describe, it, expect } from 'vitest';
 import { makeFakeChessboard } from './factories/makeFakeChessboard';
@@ -11,7 +11,7 @@ describe("Rook", () => {
         fakeChessboard[0][6].piece = undefined // removing white pawn to allow rook to move
         const selectedSquare = fakeChessboard[0][7]
         const [validatedChessboard, state] = validateMove(
-            PieceColors.WHITE,
+            Colors.WHITE,
             fakeChessboard,
             selectedSquare
         )
@@ -31,7 +31,7 @@ describe("Rook", () => {
         fakeChessboard[4][4].piece = fakeChessboard[0][0].piece // placing white pawn on same vertical column as the rook
         const selectedSquare = fakeChessboard[0][4]
         const [validatedChessboard, state] = validateMove(
-            PieceColors.WHITE,
+            Colors.WHITE,
             fakeChessboard,
             selectedSquare
         )
@@ -52,14 +52,14 @@ describe("Rook", () => {
         const newChessboard = executeMove(fakeChessboard, selectedSquare, previousSelectedSquare)
         expect(newChessboard[0][7].piece).toBe(undefined)
         expect(newChessboard[0][1].piece?.type).toBe(PieceTypes.ROOK)
-        expect(newChessboard[0][1].piece?.color).toBe(PieceColors.WHITE)
+        expect(newChessboard[0][1].piece?.color).toBe(Colors.WHITE)
     })
 
     it('should not change state if there are no valid moves', () => {
     const fakeChessboard = makeFakeChessboard()
     const selectedSquare = fakeChessboard[0][7] // white rook
 
-    const [validatedChessboard, state] = validateMove(PieceColors.WHITE, fakeChessboard, selectedSquare)
+    const [validatedChessboard, state] = validateMove(Colors.WHITE, fakeChessboard, selectedSquare)
 
     expect(fakeChessboard).toEqual(validatedChessboard)
     expect(state).toBe(States.TO_VALIDATE)

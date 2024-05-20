@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { ISquareConfig, PieceColors, States } from '@/helpers/types';
+import { ISquareContext, Colors, States } from '@/helpers/types';
 import { validateMove } from '@/helpers/validateMove';
 import { executeMove } from '@/helpers/executeMove';
 import { makeFakeChessboard } from './factories/makeFakeChessboard';
@@ -10,7 +10,7 @@ describe('Pawn', () => {
     const fakeChessboard = makeFakeChessboard()
     const selectedSquare = fakeChessboard[0][6]; // white pawn
     const [validatedChessboard, state] = validateMove(
-      PieceColors.WHITE,
+      Colors.WHITE,
       fakeChessboard,
       selectedSquare
     );
@@ -26,13 +26,13 @@ describe('Pawn', () => {
     const fakeChessboard = makeFakeChessboard()
     const selectedSquare = fakeChessboard[0][6]; // white pawn
     const [validatedChessboard, state] = validateMove(
-      PieceColors.WHITE,
+      Colors.WHITE,
       fakeChessboard,
       selectedSquare
     );
     const randomAttackableSquare = validatedChessboard[0].find(
       (cb) => cb.isAttackable
-    ) as ISquareConfig;
+    ) as ISquareContext;
 
     expect(state).toBe(States.TO_EXECUTE);
 
@@ -63,7 +63,7 @@ describe('Pawn', () => {
     fakeChessboard[0][5].piece = fakeChessboard[0][1].piece // placing pawn in front of chosen pawn to block all moves
     
     const selectedSquare = fakeChessboard[0][6]
-    const [validatedChessboard, state] = validateMove(PieceColors.WHITE, fakeChessboard, selectedSquare)
+    const [validatedChessboard, state] = validateMove(Colors.WHITE, fakeChessboard, selectedSquare)
 
     expect(fakeChessboard).toEqual(validatedChessboard)
     expect(validatedChessboard[0][6].piece?.isFirstMove).toBe(true)

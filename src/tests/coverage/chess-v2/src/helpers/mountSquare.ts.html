@@ -248,9 +248,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import {</span></span></span>
-<span class="cstat-no" title="statement not covered" >  ISquareConfig,</span>
+<span class="cstat-no" title="statement not covered" >  ISquareContext,</span>
 <span class="cstat-no" title="statement not covered" >  PieceTypes,</span>
-<span class="cstat-no" title="statement not covered" >  PieceColors,</span>
+<span class="cstat-no" title="statement not covered" >  Colors,</span>
 <span class="cstat-no" title="statement not covered" >  PiecePositions,</span>
 <span class="cstat-no" title="statement not covered" >  SquareColors,</span>
 <span class="cstat-no" title="statement not covered" >} from './types';</span>
@@ -293,7 +293,7 @@
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >const relation = ['A ', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export function mountSquare(rowIdx: number, colIdx: number): ISquareConfig {</span>
+<span class="cstat-no" title="statement not covered" >export function mountSquare(rowIdx: number, colIdx: number): ISquareContext {</span>
 <span class="cstat-no" title="statement not covered" >  const key = `${rowIdx}-${colIdx}`;</span>
 <span class="cstat-no" title="statement not covered" >  const chessNotationPosition = `${relation[rowIdx]}${colIdx + 1}`;</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -311,13 +311,13 @@
 <span class="cstat-no" title="statement not covered" >      if (init_piece.WHITE.includes(key))</span>
 <span class="cstat-no" title="statement not covered" >        return {</span>
 <span class="cstat-no" title="statement not covered" >          type: init_piece.type,</span>
-<span class="cstat-no" title="statement not covered" >          color: PieceColors.WHITE,</span>
+<span class="cstat-no" title="statement not covered" >          color: Colors.WHITE,</span>
 <span class="cstat-no" title="statement not covered" >          isFirstMove: true,</span>
 <span class="cstat-no" title="statement not covered" >        };</span>
 <span class="cstat-no" title="statement not covered" >      else if (init_piece.BLACK.includes(key))</span>
 <span class="cstat-no" title="statement not covered" >        return {</span>
 <span class="cstat-no" title="statement not covered" >          type: init_piece.type,</span>
-<span class="cstat-no" title="statement not covered" >          color: PieceColors.BLACK,</span>
+<span class="cstat-no" title="statement not covered" >          color: Colors.BLACK,</span>
 <span class="cstat-no" title="statement not covered" >          isFirstMove: true,</span>
 <span class="cstat-no" title="statement not covered" >        };</span>
 <span class="cstat-no" title="statement not covered" >    }</span>

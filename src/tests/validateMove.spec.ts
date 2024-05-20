@@ -1,4 +1,4 @@
-import { PieceColors, States } from '@/helpers/types';
+import { Colors, States } from '@/helpers/types';
 import { validateMove } from '@/helpers/validateMove';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { makeFakeChessboard } from './factories/makeFakeChessboard';
@@ -17,7 +17,7 @@ describe("Validate move function", () => {
         const fakeChessboard = makeFakeChessboard()
         const selectedSquare = fakeChessboard[3][3]; // invalid move cause square has no piece
         const [validatedChessboard, state] = validateMove(
-        PieceColors.WHITE,
+        Colors.WHITE,
         fakeChessboard,
         selectedSquare
         );
@@ -35,7 +35,7 @@ describe("Validate move function", () => {
     const fakeChessboard = makeFakeChessboard()
     const selectedSquare = fakeChessboard[0][6]; // white pawn
     const [validatedChessboard, state] = validateMove(
-      PieceColors.BLACK,
+      Colors.BLACK,
       fakeChessboard,
       selectedSquare
     );

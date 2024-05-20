@@ -1,7 +1,7 @@
 import {
-  ISquareConfig,
+  ISquareContext,
   PieceTypes,
-  PieceColors,
+  Colors,
   PiecePositions,
   SquareColors,
 } from './types';
@@ -42,11 +42,12 @@ const INITIAL_KING_POSITIONS = {
   BLACK: ['4-0'],
 };
 
-const relation = ['A ', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+const relation = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
-export function mountSquare(rowIdx: number, colIdx: number): ISquareConfig {
+export function mountSquare(rowIdx: number, colIdx: number): ISquareContext {
   const key = `${rowIdx}-${colIdx}`;
-  const chessNotationPosition = `${relation[rowIdx]}${colIdx + 1}`;
+  const position = `${relation[rowIdx]}${colIdx+1}` as keyof typeof PiecePositions
+  const chessNotationPosition = PiecePositions[position]
 
   const getPieceInfo = () => {
     const INITIAL_PIECES = [
@@ -62,13 +63,13 @@ export function mountSquare(rowIdx: number, colIdx: number): ISquareConfig {
       if (init_piece.WHITE.includes(key))
         return {
           type: init_piece.type,
-          color: PieceColors.WHITE,
+          color: Colors.WHITE,
           isFirstMove: true,
         };
       else if (init_piece.BLACK.includes(key))
         return {
           type: init_piece.type,
-          color: PieceColors.BLACK,
+          color: Colors.BLACK,
           isFirstMove: true,
         };
     }
@@ -85,6 +86,7 @@ export function mountSquare(rowIdx: number, colIdx: number): ISquareConfig {
       (rowIdx + colIdx) % 2 === 0 ? SquareColors.BLACK : SquareColors.WHITE,
     isEnemy: false,
     isAttackable: false,
+    isPossibleMove: false,
     isOccupied: false,
     isOccupiedBy: undefined,
     piece: pieceInfo || undefined,

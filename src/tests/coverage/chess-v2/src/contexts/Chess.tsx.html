@@ -268,7 +268,7 @@
 <span class="cstat-no" title="statement not covered" >import { executeMove } from '@/helpers/executeMove';</span>
 <span class="cstat-no" title="statement not covered" >import { mountSquare } from '@/helpers/mountSquare';</span>
 <span class="cstat-no" title="statement not covered" >import { resetBoard } from '@/helpers/resetBoard';</span>
-<span class="cstat-no" title="statement not covered" >import { ISquareConfig, PieceColors, States } from '@/helpers/types';</span>
+<span class="cstat-no" title="statement not covered" >import { ISquareContext, Colors, States } from '@/helpers/types';</span>
 <span class="cstat-no" title="statement not covered" >import { validateMove } from '@/helpers/validateMove';</span>
 <span class="cstat-no" title="statement not covered" >import type { ReactNode } from 'react';</span>
 <span class="cstat-no" title="statement not covered" >import { useState, createContext } from 'react';</span>
@@ -278,18 +278,18 @@
 <span class="cstat-no" title="statement not covered" >);</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >const initial_metrics = {</span>
-<span class="cstat-no" title="statement not covered" >  player: PieceColors.WHITE,</span>
+<span class="cstat-no" title="statement not covered" >  player: Colors.WHITE,</span>
 <span class="cstat-no" title="statement not covered" >  round: 0,</span>
 <span class="cstat-no" title="statement not covered" >  checkmate: false,</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >type IChessContextInitialValues = {</span>
 <span class="cstat-no" title="statement not covered" >  startGame: () =&gt; void;</span>
-<span class="cstat-no" title="statement not covered" >  startRound: (selectedPiece: ISquareConfig) =&gt; void;</span>
+<span class="cstat-no" title="statement not covered" >  startRound: (selectedPiece: ISquareContext) =&gt; void;</span>
 <span class="cstat-no" title="statement not covered" >  state: States;</span>
 <span class="cstat-no" title="statement not covered" >  metrics: typeof initial_metrics;</span>
-<span class="cstat-no" title="statement not covered" >  chessboard: ISquareConfig[][];</span>
-<span class="cstat-no" title="statement not covered" >  previousSelectedSquare: ISquareConfig | undefined;</span>
+<span class="cstat-no" title="statement not covered" >  chessboard: ISquareContext[][];</span>
+<span class="cstat-no" title="statement not covered" >  previousSelectedSquare: ISquareContext | undefined;</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 <span class="cstat-no" title="statement not covered" >export const ChessContext = createContext({} as IChessContextInitialValues);</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -297,7 +297,7 @@
 <span class="cstat-no" title="statement not covered" >  const [metrics, setMetrics] = useState(initial_metrics);</span>
 <span class="cstat-no" title="statement not covered" >  const [state, setState] = useState&lt;States&gt;(States.TO_VALIDATE);</span>
 <span class="cstat-no" title="statement not covered" >  const [previousSelectedSquare, setPreviousSelectedSquare] = useState&lt;</span>
-<span class="cstat-no" title="statement not covered" >    ISquareConfig | undefined</span>
+<span class="cstat-no" title="statement not covered" >    ISquareContext | undefined</span>
 <span class="cstat-no" title="statement not covered" >  &gt;(undefined);</span>
 <span class="cstat-no" title="statement not covered" >  const [chessboard, setChessboard] = useState(EMPTY_CHESSBOARD);</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -305,7 +305,7 @@
 <span class="cstat-no" title="statement not covered" >    console.log('Happy');</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const startRound = (selectedSquare: ISquareConfig) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const startRound = (selectedSquare: ISquareContext) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    switch (state) {</span>
 <span class="cstat-no" title="statement not covered" >      case States.TO_VALIDATE:</span>
 <span class="cstat-no" title="statement not covered" >        console.log('Validating move...');</span>
@@ -332,16 +332,16 @@
 <span class="cstat-no" title="statement not covered" >        const executedChessboard = executeMove(</span>
 <span class="cstat-no" title="statement not covered" >          resettedChessboard,</span>
 <span class="cstat-no" title="statement not covered" >          selectedSquare,</span>
-<span class="cstat-no" title="statement not covered" >          previousSelectedSquare as ISquareConfig</span>
+<span class="cstat-no" title="statement not covered" >          previousSelectedSquare as ISquareContext</span>
 <span class="cstat-no" title="statement not covered" >        );</span>
 <span class="cstat-no" title="statement not covered" >        setChessboard(executedChessboard);</span>
 <span class="cstat-no" title="statement not covered" >        setState(States.TO_VALIDATE);</span>
 <span class="cstat-no" title="statement not covered" >        setMetrics((prevState) =&gt; ({</span>
 <span class="cstat-no" title="statement not covered" >          ...prevState,</span>
 <span class="cstat-no" title="statement not covered" >          player:</span>
-<span class="cstat-no" title="statement not covered" >            prevState.player === PieceColors.WHITE</span>
-<span class="cstat-no" title="statement not covered" >              ? PieceColors.BLACK</span>
-<span class="cstat-no" title="statement not covered" >              : PieceColors.WHITE,</span>
+<span class="cstat-no" title="statement not covered" >            prevState.player === Colors.WHITE</span>
+<span class="cstat-no" title="statement not covered" >              ? Colors.BLACK</span>
+<span class="cstat-no" title="statement not covered" >              : Colors.WHITE,</span>
 <span class="cstat-no" title="statement not covered" >          round: prevState.round + 1,</span>
 <span class="cstat-no" title="statement not covered" >        }));</span>
 <span class="cstat-no" title="statement not covered" >        break;</span>

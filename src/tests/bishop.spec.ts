@@ -1,5 +1,5 @@
 import { executeMove } from '@/helpers/executeMove';
-import { PieceColors, PieceTypes, States } from '@/helpers/types';
+import { Colors, PieceTypes, States } from '@/helpers/types';
 import { validateMove } from '@/helpers/validateMove';
 import { describe, it, expect } from 'vitest';
 import { makeFakeChessboard } from './factories/makeFakeChessboard';
@@ -11,7 +11,7 @@ describe("Bishop", () => {
         fakeChessboard[3][4].piece = fakeChessboard[1][7].piece // placing white bishop on the middle of the board
         const selectedSquare = fakeChessboard[3][4]
         const [validatedChessboard, state] = validateMove(
-            PieceColors.WHITE,
+            Colors.WHITE,
             fakeChessboard,
             selectedSquare
         )
@@ -38,14 +38,14 @@ describe("Bishop", () => {
         const newChessboard = executeMove(fakeChessboard, selectedSquare, previousSelectedSquare)
         expect(newChessboard[3][4].piece).toBe(undefined)
         expect(newChessboard[6][1].piece?.type).toBe(PieceTypes.BISHOP)
-        expect(newChessboard[6][1].piece?.color).toBe(PieceColors.WHITE)
+        expect(newChessboard[6][1].piece?.color).toBe(Colors.WHITE)
     })
 
     it('should not change state if there are no valid moves', () => {
     const fakeChessboard = makeFakeChessboard()
     const selectedSquare = fakeChessboard[1][7] // white bishop
 
-    const [validatedChessboard, state] = validateMove(PieceColors.WHITE, fakeChessboard, selectedSquare)
+    const [validatedChessboard, state] = validateMove(Colors.WHITE, fakeChessboard, selectedSquare)
 
     expect(fakeChessboard).toEqual(validatedChessboard)
     expect(state).toBe(States.TO_VALIDATE)

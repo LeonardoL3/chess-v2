@@ -3,14 +3,13 @@
 import { ChessContext } from '@/contexts/Chess';
 import { States } from '@/helpers/types';
 import { useContext } from 'react';
-import { Checkmate } from './Checkmate';
 
 export function ChessBoard() {
   const {
     startGame,
     startRound,
     chessboard,
-    previousSelectedSquare,
+    currentlySelectedPieceToMove,
     metrics,
     state,
   } = useContext(ChessContext);
@@ -39,25 +38,22 @@ export function ChessBoard() {
       >
         {chessboard.map((row, idx) => (
           <section data-chess='chessboard-row' key={idx}>
-            {row.map((square, colIdx) => {
-              const { isAttackable, positionOnChessNotation, color } = square;
-              return (
-                <button
-                  disabled={
-                    state == States.TO_EXECUTE &&
-                    !isAttackable &&
-                    positionOnChessNotation !==
-                      previousSelectedSquare?.positionOnChessNotation
-                  }
-                  data-chess='chessboard-square'
-                  key={colIdx}
-                  className={`flex h-20 w-20 items-center justify-center ${color} border border-solid border-black`}
-                  onClick={() => startRound(square)}
-                >
-                  {/* <span className='text-center'>{square.piece?.type}</span> */}
-                  <span className="text-center">Row: {square.position.row} Col: {square.position.col} {square.piece?.type}</span>
-                </button>
-              );
+            {row.map(square => {  
+              	const { isPossibleMove, isAttackable, positionOnChessNotation, color } = square;
+              	const isDisabled = state === States.TO_EXECUTE && !(isAttackable || isPossibleMove)
+					&& positionOnChessNotation !== currentlySelectedPieceToMove?.positionOnChessNotation
+				return (
+					<button
+					key={positionOnChessNotation}    
+					disabled={isDisabled}
+					data-chess='chessboard-square'
+					className={`${color} flex h-20 w-20 items-center justify-center border border-solid border-black cursor-pointer`}
+					onClick={() => startRound(square)}
+					>
+					<span className='text-center'>{square.piece?.type}</span>
+					{/* <span className="text-center">Row: {square.position.row} Col: {square.position.col} {square.piece?.type}</span> */}
+					</button>
+				);
             })}
           </section>
         ))}

@@ -7,7 +7,7 @@ export enum PieceTypes {
   KING = 'king',
 }
 
-export enum PieceColors {
+export enum Colors {
   WHITE = 'white',
   BLACK = 'black',
 }
@@ -15,7 +15,8 @@ export enum PieceColors {
 export enum SquareColors {
   WHITE = 'white',
   BLACK = 'black',
-  ATTACKABLE = 'bg-orange-400',
+  POSSIBLE_MOVE = 'bg-cyan-500',
+  ATTACKABLE = 'bg-rose-600',
 }
 
 export enum PiecePositions {
@@ -92,15 +93,16 @@ export enum States {
 
 export type IPiece = {
   type: PieceTypes;
-  color: PieceColors;
+  color: Colors;
   isFirstMove: boolean;
 };
 
-export interface ISquareConfig {
+export interface ISquareContext {
   position: { row: number; col: number };
-  positionOnChessNotation: string;
+  positionOnChessNotation: PiecePositions;
   color: SquareColors;
   isAttackable: boolean;
+  isPossibleMove: boolean;
   isOccupied: boolean;
   isOccupiedBy?: PieceTypes;
   isEnemy: boolean;

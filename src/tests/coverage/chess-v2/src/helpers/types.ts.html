@@ -298,7 +298,7 @@
   KING = 'king',
 }
 &nbsp;
-export enum PieceColors {
+export enum Colors {
   WHITE = 'white',
   BLACK = 'black',
 }
@@ -383,11 +383,11 @@ export enum States {
 &nbsp;
 export type IPiece = {
   type: PieceTypes;
-  color: PieceColors;
+  color: Colors;
   isFirstMove: boolean;
 };
 &nbsp;
-export interface ISquareConfig {
+export interface ISquareContext {
   position: { row: number; col: number };
   positionOnChessNotation: string;
   color: SquareColors;

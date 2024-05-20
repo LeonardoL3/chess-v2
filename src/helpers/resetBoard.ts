@@ -1,15 +1,21 @@
-import { cloneDeep } from 'lodash';
-import { ISquareConfig, SquareColors } from './types';
+// DEPRECATED -- REMOVE LATER
 
-export function resetBoard(chessboard: ISquareConfig[][]): ISquareConfig[][] {
-  return cloneDeep(chessboard).map((row) =>
-    row.map((square) => ({
-      ...square,
-      isAttackable: false,
-      color:
-        (square.position.row + square.position.col) % 2 === 0
-          ? SquareColors.BLACK
-          : SquareColors.WHITE,
-    }))
-  );
-}
+// import { cloneDeep } from 'lodash';
+// import { ISquareContext, SquareColors } from './types';
+
+// export function resetBoard(chessboard: ISquareContext[][]): ISquareContext[][] {
+//   return cloneDeep(chessboard).map((row) =>
+//     row.map((square) => ({
+//       ...square,
+//       isAttackable: false,
+//       isPossibleMove: false,
+//       color:
+//         (square.position.row + square.position.col) % 2 === 0
+//           ? SquareColors.BLACK
+//           : SquareColors.WHITE,
+//     }))
+//   );
+// }
+
+
+export {}

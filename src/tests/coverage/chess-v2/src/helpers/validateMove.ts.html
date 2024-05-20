@@ -338,18 +338,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { cloneDeep } from 'lodash';
 import {
   IPiece,
-  ISquareConfig,
-  PieceColors,
+  ISquareContext,
+  Colors,
   PieceTypes,
   SquareColors,
   States,
 } from './types';
 &nbsp;
 export function validateMove(
-  player: PieceColors,
-  chessboard: ISquareConfig[][],
-  selectedSquare: ISquareConfig
-): [ISquareConfig[][], States] {
+  player: Colors,
+  chessboard: ISquareContext[][],
+  selectedSquare: ISquareContext
+): [ISquareContext[][], States] {
   const newChessboard = cloneDeep(chessboard);
 &nbsp;
   if (!selectedSquare?.piece) {
@@ -366,7 +366,7 @@ export function validateMove(
   }
 &nbsp;
   const sum = (number1: number, number2: number) =&gt; {
-    return color === PieceColors.WHITE ? number1 - <span class="branch-0 cbranch-no" title="branch not covered" >number2 : number1 + number2;</span>
+    return color === Colors.WHITE ? number1 - <span class="branch-0 cbranch-no" title="branch not covered" >number2 : number1 + number2;</span>
   };
 &nbsp;
   const isInsideBoard = (row: number, col: number): boolean =&gt; {
