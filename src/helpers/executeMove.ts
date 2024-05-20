@@ -1,5 +1,5 @@
 // DEPRECATED -- REMOVE LATER
- 
+
 // import { cloneDeep } from 'lodash';
 // import { IPiece, ISquareContext, PieceTypes } from './types';
 
@@ -22,4 +22,4 @@
 //   return newChessboard;
 // }
 
-export {}
+export {};

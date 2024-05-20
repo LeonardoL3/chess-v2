@@ -7,7 +7,7 @@ import { makeFakeChessboard } from './factories/makeFakeChessboard';
 
 describe('Pawn', () => {
   it('should return valid pawn moves', () => {
-    const fakeChessboard = makeFakeChessboard()
+    const fakeChessboard = makeFakeChessboard();
     const selectedSquare = fakeChessboard[0][6]; // white pawn
     const [validatedChessboard, state] = validateMove(
       Colors.WHITE,
@@ -21,9 +21,9 @@ describe('Pawn', () => {
     expect(validatedChessboard[0][4].isAttackable).toBe(true);
     expect(state).toBe(States.TO_EXECUTE);
   });
-  
+
   it('should execute pawn move', () => {
-    const fakeChessboard = makeFakeChessboard()
+    const fakeChessboard = makeFakeChessboard();
     const selectedSquare = fakeChessboard[0][6]; // white pawn
     const [validatedChessboard, state] = validateMove(
       Colors.WHITE,
@@ -50,8 +50,8 @@ describe('Pawn', () => {
       randomAttackableSquare,
       selectedSquare
     );
-    
-    const result = executedChessboard[attackableRow][attackableCol]
+
+    const result = executedChessboard[attackableRow][attackableCol];
     expect(result.piece?.type).toBe(selectedSquare.piece?.type);
     expect(result.piece?.color).toBe(selectedSquare.piece?.color);
     expect(result.piece?.isFirstMove).toBe(false);
@@ -59,15 +59,18 @@ describe('Pawn', () => {
   });
 
   it('should not change state if there are no valid moves', () => {
-    const fakeChessboard = makeFakeChessboard()
-    fakeChessboard[0][5].piece = fakeChessboard[0][1].piece // placing pawn in front of chosen pawn to block all moves
-    
-    const selectedSquare = fakeChessboard[0][6]
-    const [validatedChessboard, state] = validateMove(Colors.WHITE, fakeChessboard, selectedSquare)
+    const fakeChessboard = makeFakeChessboard();
+    fakeChessboard[0][5].piece = fakeChessboard[0][1].piece; // placing pawn in front of chosen pawn to block all moves
 
-    expect(fakeChessboard).toEqual(validatedChessboard)
-    expect(validatedChessboard[0][6].piece?.isFirstMove).toBe(true)
-    expect(state).toBe(States.TO_VALIDATE)
-  })
+    const selectedSquare = fakeChessboard[0][6];
+    const [validatedChessboard, state] = validateMove(
+      Colors.WHITE,
+      fakeChessboard,
+      selectedSquare
+    );
 
+    expect(fakeChessboard).toEqual(validatedChessboard);
+    expect(validatedChessboard[0][6].piece?.isFirstMove).toBe(true);
+    expect(state).toBe(States.TO_VALIDATE);
+  });
 });

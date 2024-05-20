@@ -46,8 +46,9 @@ const relation = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
 export function mountSquare(rowIdx: number, colIdx: number): ISquareContext {
   const key = `${rowIdx}-${colIdx}`;
-  const position = `${relation[rowIdx]}${colIdx+1}` as keyof typeof PiecePositions
-  const chessNotationPosition = PiecePositions[position]
+  const position =
+    `${relation[rowIdx]}${colIdx + 1}` as keyof typeof PiecePositions;
+  const chessNotationPosition = PiecePositions[position];
 
   const getPieceInfo = () => {
     const INITIAL_PIECES = [
