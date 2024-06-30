@@ -1,8 +1,10 @@
 'use client';
 
-import { ChessContext } from '@/contexts/Chess';
-import { States } from '@/helpers/types';
 import { useContext } from 'react';
+import Image from 'next/image';
+import { ChessContext } from '@/contexts/Chess';
+import { Colors, States } from '@/helpers/types';
+
 
 export function ChessBoard() {
   const {
@@ -58,8 +60,17 @@ export function ChessBoard() {
                   className={`${color} flex h-20 w-20 cursor-pointer items-center justify-center border border-solid border-black`}
                   onClick={() => startRound(square)}
                 >
-                  {/* <span className='text-center'>{square.piece?.type}</span> */}
-                  <span className="text-center">Row: {square.position.row} Col: {square.position.col} {square.positionOnChessNotation}</span>
+                  {square.piece && (
+                    <span className='text-center'>
+                      <Image 
+                        src={`/${square.piece.type}.png`}
+                        alt={square.piece.type}  
+                        style={{filter: `invert(${square.piece.color == Colors.WHITE ? '1' : '0'})`}}
+                        width={50}
+                        height={50}
+                      />
+                    </span>
+                  )}
                 </button>
               );
             })}

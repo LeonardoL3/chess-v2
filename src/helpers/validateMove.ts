@@ -1,4 +1,4 @@
-import { POSSIBLE_POSITIONS_RELATIVE_TO_SELECTED_SQUARE } from '@/app/constants';
+import { POSSIBLE_POSITIONS_RELATIVE_TO_SELECTED_SQUARE } from '@/constants';
 import { ISquareContext, Colors, PiecePositions } from './types';
 import { convertPosition } from './utils';
 

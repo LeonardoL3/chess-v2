@@ -13,8 +13,8 @@ export enum Colors {
 }
 
 export enum SquareColors {
-  WHITE = 'white',
-  BLACK = 'black',
+  WHITE = 'bg-board-white',
+  BLACK = 'bg-board-black',
   POSSIBLE_MOVE = 'bg-cyan-500',
   ATTACKABLE = 'bg-rose-600',
 }
